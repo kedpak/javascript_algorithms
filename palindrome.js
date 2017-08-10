@@ -1,38 +1,29 @@
+/** 
+ * palindrome - function checks if string is palindrome
+ * Returns true if string is palindrome, false if not
+ * ignores whitespace and special characters
+ */
+
 function palindrome(str) {
-  // Good luck!
+    var new_str = str.replace(/\s+/g, '').toLowerCase();
+    var spec = ['-', '_', ',', '.', ')', '(', '\\', '/'];
+    var fil = new_str.split('');
   
-
-  var new_str = str.replace(/\s+/g, '').toLowerCase();
-
-  console.log(new_str);
-  var spec = ['-', '_', ',', '.', ')', '(', '\\', '/'];
-  
-  /*
-  for (var i = 0; i < str.length; i++) {
-    if (spec.includes(str[i])) {
-      str = str.replace(str[i], "");
+    for (var i = 0; i < new_str.length; i++) {
+	for (j = 0; j < spec.length; j++) {
+	    if (fil[i] === spec[j]) {
+		fil.splice(i, 1);
+	    }
+	} 
     }
-  }
-  */
 
-  var arr = new_str.split('');
-  
-  var fil = arr.filter(function(me) {
-       return me !== '_';
-  });
-  
-
-  fil = fil.reverse();
-  fil = fil.join('');
-  
-  
-  if (fil === new_str) {
-    return true;
-  }
-  return false;
+    new_str = fil;
+    if (fil.reverse().join('') === new_str.reverse().join('')) {
+	return true;
+    }
+    else {
+	return false;
+    }
 }
 
-
-
 palindrome("eye");
-
